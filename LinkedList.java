@@ -31,13 +31,16 @@ public class LinkedList<E> {
     }
 
     public void delete(int index) {
+        if (index<0 || index>=size)
+            throw new RuntimeException();
+        
         Node<E> node = head;
 
         if (index == 0) {
             head = node.next;
             node.next = null;
         }
-        else if (0<index && index < size) {
+        else {
             // Step to find node in previous index
             for (int i = 0; i < index-1; i++) {
                 node = node.next;
@@ -51,10 +54,7 @@ public class LinkedList<E> {
                 node.next=node.next.next;
             }
         }
-        else {
-            throw new RuntimeException();
-        }
-
+        size--;
     }
     public String toString() {
         if (head == null)
